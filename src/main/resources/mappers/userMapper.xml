@@ -3,6 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.tukorea.starbucks.mapper.BoardMapper">
+<mapper namespace="org.tukorea.starbucks.mapper.UserMapper">
+
+    <insert id="signUp" useGeneratedKeys="true" keyProperty="num">
+        insert into user (num, id, passwd, userName, email, point, created_at, updated_at) values
+            (#{num}, #{id}, #{passwd}, #{name}, #{email}, #{point}, To_TIMESTAMP(#{created_at}, 'YYYY-MM-DD HH24:mi:ss.SSSSSX'), To_TIMESTAMP(#{updated_at}, 'YYYY-MM-DD HH24:mi:ss.SSSSSX')
+    </insert>
+
+    <select id="login" resultType="UserVO">
+        select id, passwd, userName, point from user where id = #{id} and passwd = #{passwd}
+    </select>
+
+    <select id="selectAll" resultType="org.tukorea.starbucks.domain.UserVO">
+     <![CDATA[
+        select * from user
+        ]]>
+     </select>
 
 </mapper>
