@@ -6,8 +6,8 @@
 <mapper namespace="org.tukorea.starbucks.mapper.UserMapper">
 
     <insert id="register" useGeneratedKeys="true" keyProperty="num" parameterType="UserVO">
-        insert into user (id, passwd, email, point) values
-            (#{id}, #{passwd}, #{name}, #{email}, #{point})
+        insert into user (id, passwd, userName, email, point) values
+            (#{id}, #{passwd}, #{userName}, #{email}, #{point})
     </insert>
 
     <select id="login" resultType="UserVO">

@@ -47,8 +47,9 @@ public class MemberController {
     }
 
     @PostMapping(value = { "/register" })
-    public String createMemberPost(@ModelAttribute("user") UserVO vo) throws Exception {
+    public String createMemberPost(@RequestBody UserVO vo) throws Exception {
         memberService.register(vo);
+    	
         return "redirect:/";
     }
 

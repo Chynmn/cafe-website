@@ -14,7 +14,7 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     private MemberDAO memberDAO;
 
-    private static final String namespace = "org.tukorea.project.mapper.UserMapper";
+    private static final String namespace = "org.tukorea.starbucks.mapper.UserMapper";
 
     @Override
     public void register(UserVO user) throws Exception {
