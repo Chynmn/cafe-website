@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>DataNotFoundException</h1>  
-	<c:url value="/member/list" var="url"/>
+	<c:url value="/member/login" var="url"/>
 	<a href="${url}">학생목록  화면가기</a>
 </body>
 </html>
