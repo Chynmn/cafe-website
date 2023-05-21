@@ -5,43 +5,38 @@
 
 <mapper namespace="org.tukorea.starbucks.mapper.MenuMapper">
 
-    <select id="menuList" resultType="org.tukorea.starbucks.domain.MenuVO">
+    <select id="readMenuList" resultType="org.tukorea.starbucks.domain.MenuVO">
      <![CDATA[
-        select * from board_free where residence = #{residence} and residenceGu = #{residenceGu} order by board_date DESC
+        select * from menu order by board_date DESC
         ]]>
      </select>
 
-    <insert id="menuPost" useGeneratedKeys="true" keyProperty="menuCode">
-        insert into board_free(id, residence,residenceGu, content, image) values
-            (#{id},#{residence},#{residenceGu}, #{content}, #{image})
+    <insert id="menuInsert" useGeneratedKeys="true" keyProperty="id" parameterType="MenuVO">
+        insert into menu(menuName, content, nutritionInfomation, kcal, saturatedFat, protein, natrium, sugars, caffein, allergy, image) values
+            (#{menuName}, #{content}, #{nutritionInfomation}, #{kcal}, #{saturatedFat}, #{protein}, #{natrium}, #{sugars}, #{caffein}, #{allergy}, #{image})
     </insert>
 
-    <update id="update" >
-        update board_free set content =#{content}
-        where num = #{num}
+    <update id="menuUpdate" >
+        update menu set menuName =#{menuName}, content =#{content}, nutritionInfomation =#{nutritionInfomation}, kcal =#{kcal}, saturatedFat =#{saturatedFat}, protein =#{protein}, natrium =#{natrium}, sugars =#{sugars}, caffein =#{caffein}, allergy =#{allergy}, image =#{image}
+        where id = #{id}
     </update>
 
-    <select id="read" resultType="BoardVO">
-        select * from board_free where num = #{num}
-    </select>
 
-    <delete id="delete">
-        delete from board_free where num = #{num}
+    <delete id="MenuDelete">
+        delete from menu where id = #{id}
     </delete>
 
-    <select id="comment" resultType="CommentVO">
-        select * from comment_free where residence = #{residence} and residenceGu = #{residenceGu}
+    <select id="readReviewList" resultType="ReviewVO">
+        select * from review where residence = #{residence} and residenceGu = #{residenceGu}
     </select>
 
-    <insert id="commentinsert">
-        insert into comment_free(boardnum, userid, comment, residence, residenceGu) values
+    <insert id="reviewInsert">
+        insert into review(boardnum, userid, comment, residence, residenceGu) values
             (#{boardnum},#{userid}, #{comment}, #{residence}, #{residenceGu})
     </insert>
-    <delete id="commentdelete">
-        delete from comment_free where comment_num = #{Comment_num}
+
+    <delete id="reviewDelete">
+        delete from review where num = #{num}
     </delete>
 
-    <delete id="commentdeletes">
-        delete from comment_free where boardnum = #{num}
-    </delete>
 </mapper>
