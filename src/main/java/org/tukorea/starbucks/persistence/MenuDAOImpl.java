@@ -34,7 +34,7 @@ public class MenuDAOImpl implements MenuDAO {
     }
 
     @Override
-    public MenuVO menuRead(Long num) throws Exception {
+    public MenuVO menuRead(int num) throws Exception {
         // TODO Auto-generated method stub
         MenuVO menuRead = sqlSession.selectOne(namespace+".menuRead", num);
 
@@ -48,13 +48,13 @@ public class MenuDAOImpl implements MenuDAO {
     }
 
     @Override
-    public void menuDelete(Long num) throws Exception {
+    public void menuDelete(int num) throws Exception {
         // TODO Auto-generated method stub
         sqlSession.delete(namespace+".menuDelete", num);
     }
 
     @Override
-    public List<ReviewVO> readReviewList(Long num) throws Exception {
+    public List<ReviewVO> readReviewList(int reviewNum) throws Exception {
         // TODO Auto-generated method stub
         List<ReviewVO> reviewList = new ArrayList<ReviewVO>();
         Map<String, Object> map = new HashMap<>();
@@ -71,9 +71,9 @@ public class MenuDAOImpl implements MenuDAO {
     }
 
     @Override
-    public void reviewDelete(int num) throws Exception {
+    public void reviewDelete(int reviewNum) throws Exception {
         // TODO Auto-generated method stub
-        sqlSession.delete(namespace+".reviewDelete", num);
+        sqlSession.delete(namespace+".reviewDelete", reviewNum);
     }
 
 }

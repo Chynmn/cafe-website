@@ -12,15 +12,15 @@ public interface MenuDAO {
     // 메뉴 등록
     public void menuInsert(MenuVO menu) throws Exception;
     // 메뉴 보기
-    public MenuVO menuRead(Long num) throws Exception;
+    public MenuVO menuRead(int num) throws Exception;
     // 메뉴 수정
     public void menuUpdate(MenuVO menu) throws Exception;
     // 메뉴 삭제
-    public void menuDelete(Long num) throws Exception;
+    public void menuDelete(int num) throws Exception;
     // 리뷰 리스트
-    public List<ReviewVO> readReviewList(Long num) throws Exception;
+    public List<ReviewVO> readReviewList(int reviewNum) throws Exception;
     // 리뷰 등록
     public void reviewInsert(ReviewVO review) throws Exception;
     // 리뷰 삭제
-    public void reviewDelete(int num) throws Exception;
+    public void reviewDelete(int reviewNum) throws Exception;
 }
