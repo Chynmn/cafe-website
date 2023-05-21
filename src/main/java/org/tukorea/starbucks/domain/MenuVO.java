@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class MenuVO {
-    private Long id;
+    private int id;
 
     private String menuName;
 
