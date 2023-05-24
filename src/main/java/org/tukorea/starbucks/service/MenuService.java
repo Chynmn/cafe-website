@@ -11,7 +11,7 @@ public interface MenuService {
     public MenuVO menuRead(int num) throws Exception;
     public void menuUpdate(MenuVO menu) throws Exception;
     public void menuDelete(int num) throws Exception;
-    public List<ReviewVO> reviewList(int num) throws Exception;
+    public List<ReviewVO> reviewList(int reviewNum) throws Exception;
     public void reviewInsert(ReviewVO review) throws Exception;
     public void reviewDelete(int num) throws Exception;
 }
