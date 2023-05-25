@@ -5,13 +5,29 @@
 
 <mapper namespace="org.tukorea.starbucks.mapper.UserMapper">
 
-    <insert id="register" useGeneratedKeys="true" keyProperty="num" parameterType="UserVO">
-        insert into user (id, passwd, userName, email, point) values
-            (#{id}, #{passwd}, #{userName}, #{email}, #{point})
+    <insert id="register">
+        insert into user (id, passwd, user_name, email, phone_num) values
+            (#{id}, #{passwd}, #{user_name}, #{email}, #{phone_num})
     </insert>
 
-    <select id="login" resultType="UserVO">
-        select id, passwd, userName, point from user where id = #{id} and passwd = #{passwd}
+    <select id="login" resultType="MemberVO">
+        select id, passwd, userName, email, phone_num from user where id = #{id} and passwd = #{passwd}
     </select>
+
+    <select id="selectByid" resultType="org.tukorea.starbucks.domain.MemberVO">
+		<![CDATA[
+        select * from user where id = #{id}
+        ]]>
+	</select>
+
+    <update id="update">
+        update user set id = #{id}, passwd = #{passwd}, username = #{user_name},
+                         email = #{email}, phone_num = #{phone_num}
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from user where id = #{id}
+    </delete>
 
 </mapper>

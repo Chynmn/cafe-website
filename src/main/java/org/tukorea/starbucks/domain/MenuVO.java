@@ -1,20 +1,23 @@
 package org.tukorea.starbucks.domain;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class MenuVO {
     private int id;
 
-    private String menuName;
+    private String menu_name;
+
+    private String publisher;
 
     private String content;
 
-    private String nutritionInformation;
+    private String nutrition_info;
 
     private int kcal;
 
-    private int saturatedFat;
+    private int saturated_fat;
 
     private int protein;
 
@@ -24,7 +27,7 @@ public class MenuVO {
 
     private int caffeine;
 
-    private String allergy;
+    private MultipartFile imageFile;
 
     private String image;
 }
