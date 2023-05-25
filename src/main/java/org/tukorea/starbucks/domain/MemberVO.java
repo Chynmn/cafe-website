@@ -3,18 +3,16 @@ package org.tukorea.starbucks.domain;
 import lombok.Data;
 
 @Data
-public class UserVO {
-
-    private int num;
+public class MemberVO {
 
     private String id;
 
     private String passwd;
 
-    private String userName;
+    private String user_name;
 
     private String email;
 
-    private Long point;
+    private String phone_num;
 
 }
