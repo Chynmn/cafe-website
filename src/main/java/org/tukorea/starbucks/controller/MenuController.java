@@ -34,27 +34,28 @@ public class MenuController {
 
     // 전체 메뉴 뷸러오기
     @RequestMapping(value = "/menu", method = RequestMethod.GET)
-    public String menuGet(Model model, HttpServletRequest request) throws Exception {
+    public List<MenuVO> menuGet(Model model, HttpServletRequest request) throws Exception {
 
         List<MenuVO> menu = menuService.menuList();
         HttpSession session = request.getSession();
         model.addAttribute("menu", menu); // 근데 이 모델 어트리뷰트는 무슨 역할인가? JSP에 뿌려줄겨
         model.addAttribute("id", session.getAttribute("id"));
-        model.addAttribute("imageFile", session.getAttribute("imageFile"));
-        return "starbucks/menu";
+//        model.addAttribute("imageFile", session.getAttribute("imageFile"));
+//        return "starbucks/menu";
+        return menu;
     }
 
     // 메뉴 등록 페이지 이동
     @RequestMapping(value = "/menu_register", method = RequestMethod.GET)
-    public String menuInsertGet(Model model, HttpServletRequest request) throws Exception {
+    public String menuRegisterGet(Model model, HttpServletRequest request) throws Exception {
        // HttpSession session = request.getSession();
 
         return "starbucks/menu_register";
     }
 
     // 메뉴 등록 기능 실행
-    @RequestMapping(value = "/menu_insert", method = RequestMethod.POST)
-    public String boardWritePost(MenuVO menu, Model model, RedirectAttributes redirect) throws Exception {
+    @RequestMapping(value = "/menu_register", method = RequestMethod.POST)
+    public String menuRegisterPost(MenuVO menu, Model model, RedirectAttributes redirect) throws Exception {
         MultipartFile imagefile = menu.getImageFile();
         String imgUploadPath = "uploadPath"+ File.separator + "imgUpload"; // 이미지 업로드 경로
         String fileName = null;
@@ -75,8 +76,8 @@ public class MenuController {
     }
 
     // 메뉴 삭제 기능 실행
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String deleteGet(@RequestParam("num") int num, Model model, RedirectAttributes rttr) throws Exception {
+    @RequestMapping(value = "/menu_delete", method = RequestMethod.GET)
+    public String menuDeleteGet(@RequestParam("num") int num, Model model, RedirectAttributes rttr) throws Exception {
         MenuVO menu = menuService.menuRead(num);
         menuService.menuDelete(menu.getId());
 
@@ -85,7 +86,7 @@ public class MenuController {
 
     // 메뉴 수정 페이지 이동
     @RequestMapping(value = "/modify", method = RequestMethod.GET)
-    public String modifyBoardGet(@RequestParam("num") int num, Model model) throws Exception {
+    public String menuModifyGet(@RequestParam("num") int num, Model model) throws Exception {
         MenuVO menu = menuService.menuRead(num);
         menuService.menuUpdate(menu);
         model.addAttribute("menu", menu);
@@ -94,7 +95,7 @@ public class MenuController {
 
     // 메뉴 수정 기능 실행
     @RequestMapping(value = "/modify", method = RequestMethod.POST)
-    public String modifyBoardPost(@ModelAttribute("menu") MenuVO menu, RedirectAttributes rttr) throws Exception {
+    public String menuModifyPost(@ModelAttribute("menu") MenuVO menu, RedirectAttributes rttr) throws Exception {
         menuService.menuUpdate(menu);
 //        rttr.addAttribute("residence",board.getResidence());
 //        rttr.addAttribute("residenceGu",board.getResidenceGu());
@@ -102,16 +103,16 @@ public class MenuController {
     }
 
     // 리뷰 등록
-    @RequestMapping(value = "/comment", method = RequestMethod.POST)
-    public String commentPost(@ModelAttribute("comment") ReviewVO review, RedirectAttributes rttr) throws Exception {
+    @RequestMapping(value = "/review", method = RequestMethod.POST)
+    public String reviewPost(@ModelAttribute("comment") ReviewVO review, RedirectAttributes rttr) throws Exception {
         menuService.reviewInsert(review);
 
         return "redirect:starbucks/menu";
     }
 
     // 리뷰 삭제
-    @RequestMapping(value = "/commentdelete", method = RequestMethod.GET)
-    public String commentDeleteGet(@ModelAttribute("review") ReviewVO review , RedirectAttributes rttr) throws Exception {
+    @RequestMapping(value = "/reviewdelete", method = RequestMethod.GET)
+    public String reviewDeleteGet(@ModelAttribute("review") ReviewVO review , RedirectAttributes rttr) throws Exception {
         menuService.reviewDelete(review.getReviewNum());
 
         return "redirect:starbucks/menu";
