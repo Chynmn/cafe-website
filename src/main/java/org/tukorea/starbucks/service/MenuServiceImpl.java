@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.tukorea.starbucks.domain.MenuVO;
-import org.tukorea.starbucks.domain.ReviewVO;
 import org.tukorea.starbucks.persistence.MenuDAO;
 
 import java.util.List;
@@ -19,7 +18,7 @@ public class MenuServiceImpl implements MenuService{
     @Autowired
     private MenuDAO menuDAO;
 
-    ReviewVO review = new ReviewVO();
+//    ReviewVO review = new ReviewVO();
 
 
     private static final String namespace = "org.tukorea.starbucks.mapper.MenuMapper";
@@ -28,7 +27,7 @@ public class MenuServiceImpl implements MenuService{
     public List<MenuVO> menuList() throws Exception {
         // TODO Auto-generated method stub
 
-        return menuDAO.readMenuList();
+        return menuDAO.readList();
     }
 
     @Override
@@ -39,44 +38,47 @@ public class MenuServiceImpl implements MenuService{
     }
 
     @Override
-    public MenuVO menuRead(int num) throws Exception {
+    public MenuVO menuRead(int id) throws Exception {
         // TODO Auto-generated method stub
 
-        return menuDAO.menuRead(num);
+        return menuDAO.read(id);
     }
 
     @Override
     public void menuUpdate(MenuVO menu) throws Exception {
         // TODO Auto-generated method stub
 
-        menuDAO.menuUpdate(menu);
+        menuDAO.update(menu);
+    }
+
+    @Override
+    public void menuDelete(int id) throws Exception {
+        // TODO Auto-generated method stub
+
+        menuDAO.delete(id);
     }
 
     @Transactional(propagation=Propagation.REQUIRED, isolation=Isolation.READ_COMMITTED)
-    @Override
-    public void menuDelete(int num) throws Exception {
-        // TODO Auto-generated method stub
-
-        menuDAO.reviewDelete(num);
-        menuDAO.menuDelete(num);
+    public void deleteAddTransactionMenu(int id, MenuVO menu) throws Exception {
+        menuDAO.deleteToAddTransaction(id, menu);
     }
 
-    @Override
-    public List<ReviewVO> reviewList(int reviewNum) throws Exception {
-        // TODO Auto-generated method stub
-        return menuDAO.readReviewList(reviewNum);
-    }
+//    @Override
+//    public List<ReviewVO> reviewList(int reviewNum) throws Exception {
+//        // TODO Auto-generated method stub
+//        return menuDAO.readReviewList(reviewNum);
+//    }
+//
+//    @Override
+//    public void reviewInsert(ReviewVO review) throws Exception {
+//        // TODO Auto-generated method stub
+//        menuDAO.reviewInsert(review);
+//    }
+//
+//    @Override
+//    public void reviewDelete(int reviewNum) throws Exception {
+//        // TODO Auto-generated method stub
+//
+//        menuDAO.reviewDelete(reviewNum);
 
-    @Override
-    public void reviewInsert(ReviewVO review) throws Exception {
-        // TODO Auto-generated method stub
-        menuDAO.reviewInsert(review);
-    }
-
-    @Override
-    public void reviewDelete(int reviewNum) throws Exception {
-        // TODO Auto-generated method stub
-
-        menuDAO.reviewDelete(reviewNum);
-    }
 }
