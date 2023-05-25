@@ -5,38 +5,44 @@
 
 <mapper namespace="org.tukorea.starbucks.mapper.MenuMapper">
 
-    <select id="readMenuList" resultType="org.tukorea.starbucks.domain.MenuVO">
+    <select id="selectById" resultType="org.tukorea.starbucks.domain.MenuVO">
      <![CDATA[
-        select * from menu order by board_date DESC
+        select * from menu where id =#{id}
         ]]>
      </select>
 
-    <insert id="menuInsert" useGeneratedKeys="true" keyProperty="id" parameterType="MenuVO">
-        insert into menu(menuName, content, nutritionInfomation, kcal, saturatedFat, protein, natrium, sugars, caffein, allergy, image) values
-            (#{menuName}, #{content}, #{nutritionInfomation}, #{kcal}, #{saturatedFat}, #{protein}, #{natrium}, #{sugars}, #{caffein}, #{allergy}, #{image})
+    <select id="selectAll" resultType="org.tukorea.starbucks.domain.MenuVO">
+		<![CDATA[
+        select * from menu
+        ]]>
+	</select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="MenuVO">
+        insert into menu(menu_name, publisher, content, nutrition_info, kcal, saturated_fat, protein, natrium, sugars, caffeine) values
+            (#{menu_name}, #{publisher}, #{content}, #{nutrition_info}, #{kcal}, #{saturated_fat}, #{protein}, #{natrium}, #{sugars}, #{caffeine})
     </insert>
 
-    <update id="menuUpdate" >
-        update menu set menuName =#{menuName}, content =#{content}, nutritionInfomation =#{nutritionInfomation}, kcal =#{kcal}, saturatedFat =#{saturatedFat}, protein =#{protein}, natrium =#{natrium}, sugars =#{sugars}, caffein =#{caffein}, allergy =#{allergy}, image =#{image}
+    <update id="update" >
+        update menu set menu_name =#{menu_name}, publisher=#{publisher}, content =#{content}, nutrition_info =#{nutrition_info}, kcal =#{kcal}, saturated_fat =#{saturated_fat}, protein =#{protein}, natrium =#{natrium}, sugars =#{sugars}, caffein =#{caffein}
         where id = #{id}
     </update>
 
 
-    <delete id="MenuDelete">
+    <delete id="delete">
         delete from menu where id = #{id}
     </delete>
 
-    <select id="readReviewList" resultType="ReviewVO">
-        select * from review where residence = #{residence} and residenceGu = #{residenceGu}
-    </select>
+<!--    <select id="readReviewList" resultType="ReviewVO">-->
+<!--        select * from review where residence = #{residence} and residenceGu = #{residenceGu}-->
+<!--    </select>-->
 
-    <insert id="reviewInsert">
-        insert into review(boardnum, userid, comment, residence, residenceGu) values
-            (#{boardnum},#{userid}, #{comment}, #{residence}, #{residenceGu})
-    </insert>
+<!--    <insert id="reviewInsert">-->
+<!--        insert into review(boardnum, userid, comment, residence, residenceGu) values-->
+<!--            (#{boardnum},#{userid}, #{comment}, #{residence}, #{residenceGu})-->
+<!--    </insert>-->
 
-    <delete id="reviewDelete">
-        delete from review where num = #{num}
-    </delete>
+<!--    <delete id="reviewDelete">-->
+<!--        delete from review where num = #{num}-->
+<!--    </delete>-->
 
 </mapper>
