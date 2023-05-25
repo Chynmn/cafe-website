@@ -15,8 +15,12 @@
 			<tr><th>메뉴 이름</th><td><input type="text" name="id" autofocus placeholder="공백없이 입력하세요"></td></tr>
 			<tr><th>메뉴 설명</th><td><input type="text" name="passwd" placeholder="공백없이 입력하세요"></td></tr>
 			<tr><th>제품 영양 정보</th><td><input type="text" name="username"  placeholder="공백없이 입력하세요"></td></tr>
-			<tr><th>EmailAddress</th><td><input type="text" name="email" placeholder="****@****.***"></td></tr>
-			<tr><th>MobileNumber</th><td><input type="text" name="mobile" placeholder="***-****-****"></td></tr>
+			<tr><th>1회 제공량(kcal)</th><td><input type="text" name="kcal" placeholder="kcal"></td></tr>
+			<tr><th>포화지방(g)</th><td><input type="text" name="saturated_fat" placeholder="g"></td></tr>
+			<tr><th>단백질(g)</th><td><input type="text" name="protein" placeholder="g"></td></tr>
+			<tr><th>나트륨(mg)</th><td><input type="text" name="natrium" placeholder="mg"></td></tr>
+			<tr><th>당류(g)</th><td><input type="text" name="sugars" placeholder="g"></td></tr>
+			<tr><th>카페인(g)</th><td><input type="text" name="caffeine" placeholder="mg"></td></tr>
 		</table>
 		<dl>
 			<dd><input type="submit" name="submit" value="보내기"></dd>
