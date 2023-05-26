@@ -19,7 +19,8 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void register(MemberVO user) throws Exception {
         // TODO Auto-generated method stub
-        sqlSession.insert(namespace+".register", user);
+//        sqlSession.insert(namespace+".register", user);
+        memberDAO.register(user);
     }
 
     @Override
