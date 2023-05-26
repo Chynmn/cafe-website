@@ -40,7 +40,8 @@
 	 
    	<context:component-scan base-package="org.tukorea.starbucks.persistence" />
    	<context:component-scan base-package="org.tukorea.starbucks.service" />
-		
+	<context:component-scan base-package="org.tukorea.starbucks.aop" />
 
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
 </beans>
