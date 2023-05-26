@@ -31,7 +31,7 @@ public class MenuController {
     private MenuService menuService;
 
     // 전체 메뉴 뷸러오기
-    @RequestMapping(value = "/menu", method = RequestMethod.GET)
+    @RequestMapping(value = "/menu_list", method = RequestMethod.GET)
     public String menuGet(Model model, HttpServletRequest request) throws Exception {
 
         List<MenuVO> menu = menuService.menuList();
@@ -39,7 +39,7 @@ public class MenuController {
         model.addAttribute("menu", menu); // 근데 이 모델 어트리뷰트는 무슨 역할인가? JSP에 뿌려줄겨
 //        model.addAttribute("id", session.getAttribute("id"));
 //        model.addAttribute("imageFile", session.getAttribute("imageFile"));
-        return "menu/menu";
+        return "menu/menu_list";
     }
 
     // 메뉴 등록 페이지 이동
@@ -47,7 +47,7 @@ public class MenuController {
     public String menuRegisterGet(Model model, HttpServletRequest request) throws Exception {
        // HttpSession session = request.getSession();
 
-        return "starbucks/menu_register";
+        return "menu/menu_register";
     }
 
     // 메뉴 등록 기능 실행
@@ -69,7 +69,7 @@ public class MenuController {
         Thread.sleep(3000);
 
 //        return "redirect:/menu/menu";
-        return "redirect:/menu";
+        return "redirect:menu/menu_list";
     }
 
     // 메뉴 삭제 기능 실행
@@ -78,7 +78,7 @@ public class MenuController {
         MenuVO menu = menuService.menuRead(num);
         menuService.menuDelete(menu.getId());
 
-        return "redirect:/starbucks/menu"; // <- 경로는 jsp에서 정하면 되는거?  그 mapping 위에 value
+        return "redirect:menu/menu_list";
     }
 
     // 메뉴 수정 페이지 이동
@@ -87,7 +87,7 @@ public class MenuController {
         MenuVO menu = menuService.menuRead(num);
         menuService.menuUpdate(menu);
         model.addAttribute("menu", menu);
-        return "starbucks/menu_modify";
+        return "menu/menu_modify";
     }
 
 //    // 메뉴 수정 기능 실행
