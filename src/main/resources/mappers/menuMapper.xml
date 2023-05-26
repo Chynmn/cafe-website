@@ -23,7 +23,7 @@
     </insert>
 
     <update id="update" >
-        update menu set menu_name =#{menu_name}, publisher=#{publisher}, content =#{content}, nutrition_info =#{nutrition_info}, kcal =#{kcal}, saturated_fat =#{saturated_fat}, protein =#{protein}, natrium =#{natrium}, sugars =#{sugars}, caffein =#{caffein}
+        update menu set menu_name =#{menu_name}, publisher=#{publisher}, content =#{content}, nutrition_info =#{nutrition_info}, kcal =#{kcal}, saturated_fat =#{saturated_fat}, protein =#{protein}, natrium =#{natrium}, sugars =#{sugars}, caffeine =#{caffeine}
         where id = #{id}
     </update>
 
