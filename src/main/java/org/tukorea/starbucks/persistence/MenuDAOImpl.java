@@ -36,7 +36,7 @@ public class MenuDAOImpl implements MenuDAO {
     @Override
     public MenuVO read(int id) throws Exception {
         // TODO Auto-generated method stub
-        MenuVO menuRead = sqlSession.selectOne(namespace+".read", id);
+        MenuVO menuRead = sqlSession.selectOne(namespace+"selectById", id);
 
         return menuRead;
     }
