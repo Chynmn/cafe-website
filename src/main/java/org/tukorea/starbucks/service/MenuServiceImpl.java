@@ -33,8 +33,8 @@ public class MenuServiceImpl implements MenuService{
     @Override
     public void menuInsert(MenuVO menu) throws Exception {
         // TODO Auto-generated method stub
-
-        sqlSession.insert(namespace+".menuInsert", menu);
+        
+    	menuDAO.insert(menu);
     }
 
     @Override
