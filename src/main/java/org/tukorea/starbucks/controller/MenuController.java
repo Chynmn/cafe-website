@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.tukorea.starbucks.domain.MenuVO;
 import org.tukorea.starbucks.service.MenuService;
@@ -32,14 +33,17 @@ public class MenuController {
 
     // 전체 메뉴 뷸러오기
     @RequestMapping(value = "/menu_list", method = RequestMethod.GET)
-    public String menuGet(Model model, HttpServletRequest request) throws Exception {
+    public ModelAndView menuGet(Model model, HttpServletRequest request) throws Exception {
 
         List<MenuVO> menu = menuService.menuList();
         HttpSession session = request.getSession();
-        model.addAttribute("menu", menu); // 근데 이 모델 어트리뷰트는 무슨 역할인가? JSP에 뿌려줄겨
-//        model.addAttribute("id", session.getAttribute("id"));
-//        model.addAttribute("imageFile", session.getAttribute("imageFile"));
-        return "menu/menu_list";
+//        model.addAttribute("menu", menu); // 근데 이 모델 어트리뷰트는 무슨 역할인가? JSP에 뿌려줄겨
+////        model.addAttribute("id", session.getAttribute("id"));
+////        model.addAttribute("imageFile", session.getAttribute("imageFile"));
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("menu", menu);
+        mv.setViewName("menu/menu_list");
+        return mv;
     }
 
     // 메뉴 등록 페이지 이동
