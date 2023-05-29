@@ -16,6 +16,7 @@ public interface MenuDAO {
     public void update(MenuVO menu) throws Exception;
     // 메뉴 삭제
     public void delete(int id) throws Exception;
+    
     public void deleteToAddTransaction(int id, MenuVO menu) throws Exception;
 //    // 리뷰 리스트
 //    public List<ReviewVO> readReviewList(int reviewNum) throws Exception;

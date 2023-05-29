@@ -11,7 +11,7 @@
     </insert>
 
     <select id="login" resultType="MemberVO">
-        select id, passwd, userName, email, phone_num from user where id = #{id} and passwd = #{passwd}
+        select id, passwd from user where id = #{id} and passwd = #{passwd}
     </select>
 
     <select id="selectByid" resultType="org.tukorea.starbucks.domain.MemberVO">

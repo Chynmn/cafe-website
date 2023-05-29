@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.tukorea.starbucks.domain.MemberVO;
 import org.tukorea.starbucks.service.MemberService;
@@ -22,13 +23,15 @@ public class MemberController {
 
     // 로그인
     @GetMapping(value = "/login")
-    public String getlogin() throws Exception{
+    public ModelAndView getlogin() throws Exception{
         logger.info("login GET Method executed.");
-        return "member/login";
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/member/login");
+        return mv;
     }
 
     @PostMapping(value = "/login")
-    public String login(MemberVO user, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
+    public ModelAndView login(MemberVO user, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
         logger.info("login Post Method executed.");
         HttpSession session = req.getSession();
         MemberVO login = memberService.login(user);
@@ -36,9 +39,11 @@ public class MemberController {
             session.setAttribute("member", null);
             rttr.addFlashAttribute("msg", false);
         } else {
-            session.setAttribute("id", login);
+            session.setAttribute("id", login.getId());
         }
-        return null;
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/menu/menu");
+        return mv;
     }
 
     // 회원가입
@@ -59,7 +64,7 @@ public class MemberController {
     @GetMapping(value = "/logout")
     public String logout(HttpSession session) throws Exception {
         session.invalidate();
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @RequestMapping(value = {"/read"}, method = RequestMethod.GET)
@@ -91,7 +96,7 @@ public class MemberController {
         logger.info(vo.toString());
         logger.info("/modify?id=" + vo.getId() + " URL POST method called. then modifyMemberPost executed.");
 
-        return "redirect:/mission/list";
+        return "redirect:/member/member_read";
     }
 
 }

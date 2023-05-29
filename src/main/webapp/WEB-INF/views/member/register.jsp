@@ -27,7 +27,7 @@
         <div class="py-5 text-center">
             <img class="d-block mx-auto mb-4 " src="../resources/image/signup.png" alt="" width="72" height="72">
             <h2>회원가입</h2>
-            <p class="lead">지역 커뮤니티에 오신것을 환영합니다.</p>
+            <p class="lead">카페 회원가입 페이지 입니다.</p>
         </div>
 
         <div class="col-md-12 order-md-1">
@@ -73,16 +73,7 @@
                 <%--						<option value="">구군을 선택하세요</option>--%>
                 <%--						</select>--%>
                 <%--    				</span>--%>
-                <span id="si">
-     <select name="residence" onchange="getText('si')">
-	     <option value="">시도를 선택하세요</option>
-     </select>
-    </span>
-                <span id="gu">
-	<select name="residenceGu" onchange="getText('gu')">
-		<option value="">구군을 선택하세요</option>
-	</select>
-    </span>
+
             </div>
             <div class="form-group has-feedback">
                 <button class="btn btn-success" type="submit" id="submit">회원가입</button>
@@ -119,7 +110,7 @@
 
     })
 
-    function getText(name) { //gu
+/*     function getText(name) { //gu
         let city = $("select[name='residence']").val();
         let gu = $("select[name='residenceGu']").val();
         let disname;
@@ -150,6 +141,6 @@
                 })
             }
         })
-    }
+    } */
 </script>
 </html>
