@@ -48,11 +48,6 @@
 
     </div>
 
-    <c:if test="${residence != null }">
-        <c:redirect url="/board/board?residence=${residence}&residenceGu=${residenceGu} ">
-
-        </c:redirect>
-    </c:if>
     <c:if test="${msg == false}">
         <p style="color: red;">로그인 실패! 아이디와 비밀번호 확인해주세요.</p>
     </c:if>
